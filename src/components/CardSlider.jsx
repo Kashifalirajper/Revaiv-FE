@@ -40,27 +40,27 @@ const ReviewCard = ({
         "relative min-w-max  cursor-pointer overflow-hidden rounded p-2 bg-[#01C7B121]",
       )}
     >
-      <blockquote className="text-sm text-black">{text}</blockquote>
+      <blockquote className="text-sm lg:text-base font-normal text-black font-Roboto">{text}</blockquote>
     </figure>
   );
 };
 
 export function MarqueeDemo() {
   return (
-    <div className="relative flex p-5 w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-white md:shadow-xl">
+    <div className="relative min-h-60 lg:min-h-80 flex padding0 p-5 w-full flex-col items-center justify-center overflow-hidden rounded-lg border marqueeSlider md:shadow-xl">
       <Marquee pauseOnHover className="[--duration:20s]">
-        {firstRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:20s]">
-        {secondRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
+        {firstRow.map((review,index) => (
+          <ReviewCard key={index} {...review} />
         ))}
       </Marquee>
       <Marquee pauseOnHover className="[--duration:20s]">
-        {firstRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
+        {secondRow.map((review,index) => (
+          <ReviewCard key={index} {...review} />
+        ))}
+      </Marquee>
+      <Marquee pauseOnHover className="[--duration:20s]">
+        {firstRow.map((review,index) => (
+          <ReviewCard key={index} {...review} />
         ))}
       </Marquee>
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 "></div>

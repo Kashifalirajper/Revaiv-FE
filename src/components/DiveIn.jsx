@@ -1,63 +1,91 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import image1 from "../assets/images/diveIn1.png";
 import image2 from "../assets/images/diveIn2.png";
 import image3 from "../assets/images/diveIn3.png";
 import image4 from "../assets/images/diveIn4.png";
 
 const DiveIn = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className="bg-transparent mt-[-200px]">
-      <div class="max-w-screen-xl mx-auto p-5">
-        <div
-          class="rounded-xl shadow-lg p-8"
-          style={{
-            background: "linear-gradient(249deg, #F8F0F0 0%, #DEF1F0 100%)",
-            border: "5px solid #FFF",
-          }}
-        >
-          <div className="grid max-w-screen-xl px-4 py-8 mx-auto gap-8 grid-cols-12">
-            <div className="mr-auto place-self-center lg:col-span-5 col-span-12 text-left order-last lg:order-none">
-              <h1 className="text-3xl text-left font-bold mb-2">
+    <section
+      style={{
+        background: "linear-gradient(249deg, #F8F0F0 0%, #DEF1F0 100%)"
+      }}
+      className="shadow-lg"
+    >
+      <div className="max-screen mx-auto">
+        <div className="rounded-[20px] lg:rounded-[40px]  mx-auto  p-1 pb-2">
+          <div className="grid py-8 mx-auto gap:2 lg:gap-8 grid-cols-12">
+            <div className="flex flex-col justify-center mr-auto  lg:col-span-5 col-span-12 w-full text-left smallScreenTextCenter">
+              <h1 className="text-xl font-medium lg:text-5xl text-left lg:font-bold mb-6 font-Roboto smallScreenTextCenter">
                 Curious? <br /> Dive In!
               </h1>
-              <p className="text-xl text-left mb-6">
+              <p className="text-base lg:text-xl text-left mb-6 smallScreenTextCenter font-Roboto">
                 RevAiv is built on the vision to create a positive impact on
                 people's health.
               </p>
-              <a
-                href="#"
-                className="inline-flex items-center justify-center px-4 py-2 text-white  font-bold bg-[#1A3333] rounded-md shadow hover:bg-[#1A3344]"
+              <button
+                onClick={() => navigate("/get-started")}
+                className="smallScreenHide getStartedBtn bg-[#1A3333] text-white max-w-44"
               >
                 Get Started
-              </a>
+              </button>
             </div>
-            <div className="lg:mt-0 lg:col-span-7 col-span-12  lg:flex lg:order-none">
-              <div class="grid grid-cols-2 gap-8 mt-8">
-                <div class="flex flex-col min-h-52 items-center text-center justify-center p-4 bg-gray-50 rounded-lg shadow">
-                  <img src={image1} alt="Relationship" class="mb-3 w-12 h-12" />
-                  <p class="text-gray-700">
-                    A better relationship with their healthcare provider
+            <div className="lg:mt-0 lg:col-span-7 col-span-12 justify-end  lg:flex lg:order-none">
+              <div className="grid grid-cols-2 gap-2 lg:gap-4">
+                <div className="max-w-56 flex flex-col  items-center text-left p-4 lg:p-4 bg-gray-50 rounded-[12px] :lg:rounded-[20px] shadow">
+                  <img
+                    src={image1}
+                    alt="Relationship"
+                    className="mb-3 h-16 lg:h-28"
+                  />
+                  <p className="text-xs lg:text-base text-center text-gray-700 font-Roboto">
+                    Compassionate Care Team
                   </p>
                 </div>
-                <div class="flex flex-col min-h-52 items-center text-center justify-center p-4 bg-gray-50 rounded-lg shadow">
-                  <img src={image2} alt="Monitoring" class="mb-3 w-12 h-12" />
-                  <p class="text-gray-700">
-                    Regularly monitoring their symptoms and health progress
+                <div className="max-w-56 flex flex-col  items-center text-left p-4 lg:p-4 bg-gray-50 rounded-[12px] :lg:rounded-[20px] shadow">
+                  <img
+                    src={image2}
+                    alt="Monitoring"
+                    className="mb-3 h-16 lg:h-28"
+                  />
+                  <p className="text-xs lg:text-base text-center text-gray-700 font-Roboto">
+                    Personalized Lifestyle Interventions
                   </p>
                 </div>
-                <div class="flex flex-col min-h-52 items-center text-center justify-center p-4 bg-gray-50 rounded-lg shadow">
-                  <img src={image3} alt="Adjustments" class="mb-3 w-12 h-12" />
-                  <p class="text-gray-700">
-                    Making positive lifestyle adjustments
+                <div className="max-w-56 flex flex-col  items-center text-left p-4 lg:p-4 bg-gray-50 rounded-[12px] :lg:rounded-[20px] shadow">
+                  <img
+                    src={image3}
+                    alt="Adjustments"
+                    className="mb-3 h-16 lg:h-28"
+                  />
+                  <p className="text-xs lg:text-base text-center text-gray-700 font-Roboto">
+                    Insightful Progress Tracking
                   </p>
                 </div>
-                <div class="flex flex-col min-h-52 items-center text-center justify-center p-4 bg-gray-50 rounded-lg shadow">
-                  <img src={image4} alt="Care Plan" class="mb-3 w-12 h-12" />
+                <div className="max-w-56 flex flex-col  items-center text-left p-4 lg:p-4 bg-gray-50 rounded-[12px] :lg:rounded-[20px] shadow">
+                  <img
+                    src={image4}
+                    alt="Care Plan"
+                    className="mb-3 h-16 lg:h-28"
+                  />
 
-                  <p class="text-gray-700">Personalized Care Plan</p>
+                  <p className="text-xs lg:text-base text-center text-gray-700 font-Roboto">
+                    Flexible Care Plans
+                  </p>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="d-flex justify-center w-full">
+            <button
+              onClick={() => navigate("/get-started")}
+              className="smallScreenShow hide getStartedBtn mb-4 bg-[#1A3333] text-white"
+            >
+              Get Started
+            </button>
           </div>
         </div>
       </div>

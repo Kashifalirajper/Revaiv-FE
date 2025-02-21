@@ -1,57 +1,120 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { Carousel } from "antd";
+import feedback from "../assets/images/feedback-img.png";
+import sara from "../assets/images/client.png";
 
 const Testimonials = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slides = [
+    {
+      name: "Maryam",
+      desc: "I struggled with PCOS for years, trying everything to lose weight. Revaiv’s personalized diet and AI fitness plan fit my energy levels perfectly. My health coach truly understood me. Six months later, I’m 15 pounds lighter, and my cycles are regular again. I finally feel in control of my health.",
+    },
+    {
+      name: "Emma",
+      desc: "With hypothyroidism, I was always tired, and losing weight felt impossible. RevAiv’s meal plan supported my thyroid, and the AI fitness program matched my slow metabolism. Four months later, my energy is back, and I’ve lost 8 pounds. I feel so much better—like myself again.",
+    },
+    {
+      name: "Elisa",
+      desc: "After being diagnosed with NAFLD, I was unsure where to start. RevAiv’s AI diet plan focused on liver health, and their fitness plan helped me regain strength. The daily tracking kept me accountable. Six months later, my liver function has improved, and I finally feel in control of my health.",
+    },
+    {
+      name: "Priyanka",
+      desc: "Years of cystic acne made me lose hope. RevAiv’s personalized diet eliminated inflammation triggers, and the fitness plan helped reduce my stress. Within three months, my skin cleared up thanks to the guidance from my health coach. I’ve never felt this confident in my own skin before!",
+    },
+    {
+      name: "Bella",
+      desc: "Menopause hit me hard—hot flashes, fatigue, weight gain. RevAiv’s hormone-balancing diet and low-impact AI workouts helped me regain control. My health coach made thoughtful adjustments as I progressed. After five months, I’ve lost 10 pounds, my hot flashes have eased, and I finally feel like myself again.",
+    },
+  ];
+  const [progresses, setProgresses] = useState(
+    new Array(slides.length).fill(0)
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgresses((currentProgresses) => {
+        const updatedProgresses = [...currentProgresses];
+        updatedProgresses[activeSlide] =
+          updatedProgresses[activeSlide] >= 100
+            ? 0
+            : updatedProgresses[activeSlide] + 2; // Increment progress by 2% every 200ms
+        return updatedProgresses;
+      });
+
+      if (progresses[activeSlide] >= 100) {
+        setActiveSlide((currentSlide) => (currentSlide + 1) % slides.length);
+      }
+    }, 150);
+
+    return () => clearInterval(interval);
+  }, [activeSlide, progresses]);
 
   return (
-    <div>
+    <section className="bg-[#f0f0f0] pt-2 lg:pt-10">
+      <div className="max-screen flex-col mx-auto lg:p-5">
+        <div
+          className="rounded-[20px] lg:rounded-[40px] shadow-lg p-4 relative padding0"
+          style={{
+            background:
+              "linear-gradient(180deg, #F6FBFF 0.21%, #FFFFF8 99.81%)",
+            border: "5px solid #FFF",
+          }}
+        >
 
-
-<div id="default-carousel" class="relative w-full" data-carousel="slide">
- 
-    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-1.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
+          <Carousel autoplay effect="fade" autoplaySpeed={8400} speed={100} // Slide transition speed
+            dots={false} // Disable dots navigation
+            draggable={false} // Disable dragging/swiping
+            pauseOnHover={false} // Do not pause on hover
+            pauseOnDotsHover={false} // Do not pause when dots are hovered (even though dots are disabled)
+            arrows={false} // Disable arrow controls
+            touchMove={false} // Prevent touch movement
+            keyboard={false} // Disable keyboard navigation>
+            >
+            {slides.map((text, index) => (
+              <div key={index}>
+                <figure className="p-2 lg:p-5 mx-auto text-left lg:text-center">
+                  <img
+                    src={feedback}
+                    className="h-30 lg:mx-auto mb-5 mt-10"
+                    alt="feedback"
+                  />
+                  <blockquote>
+                    <p className="text-base  lg:text-xl font-normal text-[#3B3B3B] font-Roboto">
+                      "{text.desc}"
+                    </p>
+                  </blockquote>
+                  <figcaption className="flex items-center justify-start lg:justify-center mt-8 space-x-3">
+                    <img
+                      className="w-12 h-12 lg:w-24 lg:h-24 rounded-full"
+                      src={sara}
+                      alt="Profile"
+                    />
+                    <span className="text-base lg:text-2xl text-gray-900 font-normal">
+                      {text.name}
+                    </span>
+                  </figcaption>
+                </figure>
+              </div>
+            ))}
+          </Carousel>
+          <div className="flex justify-center space-x-4 mt-2">
+            {progresses.map((progress, index) => (
+              <div
+                key={index}
+                className="bg-[#0000000d] rounded-full drop-shadow-2xl h-2 overflow-hidden"
+                style={{ width: `${100 / slides.length}%` }}
+              >
+                <div
+                  className="bg-[#01C7B1] h-full transition-all duration-300"
+                  style={{ width: `${progress}%` }}
+                ></div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-2.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-3.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-4.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-5.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-    </div>
-    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-    </div>
-    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-            </svg>
-            <span class="sr-only">Previous</span>
-        </span>
-    </button>
-    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-            </svg>
-            <span class="sr-only">Next</span>
-        </span>
-    </button>
-</div>
-
-    </div>
+      </div>
+    </section>
   );
 };
 

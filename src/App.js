@@ -5,16 +5,24 @@ import WhyChooseUS from "./components/WhyChooseUS";
 import FeatureSection from "./components/FeatureSection";
 import DiveIn from "./components/DiveIn";
 import Testimonials from "./components/Testimonials";
+import FaqSection from "./components/FAQs";
+import ThisIsRevaiv from "./components/ThisIsRevaiv";
+import NewsLetter from "./components/NewsLetter";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App ">
-      <Navbar />
+    <div>
+      <Navbar/>
       <HeroSection />
       <WhyChooseUS />
-      <FeatureSection/>
-      <DiveIn/>
-      <Testimonials/>
+      <FeatureSection />
+      <DiveIn />
+      <Testimonials />
+      <FaqSection />
+      <ThisIsRevaiv />
+      <NewsLetter />
+      <Footer />
     </div>
   );
 }
